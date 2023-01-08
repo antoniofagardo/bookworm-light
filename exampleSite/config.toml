@@ -1,5 +1,5 @@
 ######################## default configuration ####################
-baseURL = "https://demo.gethugothemes.com/bookworm-light/"
+baseURL = "https://codewithantoine.netlify.app/"
 title = "Bookworm - Personal Blog Template"
 theme = "bookworm-light"
 # post pagination
