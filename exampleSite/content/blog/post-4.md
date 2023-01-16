@@ -19,14 +19,16 @@ To avoid any compatibility issues, we are going to install the 64-BIT version of
 3. Select the operating system `RASPBERRY PI OS LITE (64-BIT)`
 4. Select the storage used (USB or SD card)
 5. Click the `config` icon to access the advanced options
+
 * Enable hostname and add a name (`codepi` in our case)
 * Enable SSH and use password authentication
 * Enable username and password (`codepi`, ****)
 * Enable wireless LAN and fill in information about SSID and password for your network
 * Enable local settings (`America/Los_angeles` in our case)
 * Click the save button
-6. Click the `WRITE` button and let the process finish
-7. Plug the SD card or USB stick into the pi ad let it boot. It may take \~1-2 min as multiple reboots are required during the first setup
+
+1. Click the `WRITE` button and let the process finish
+2. Plug the SD card or USB stick into the pi ad let it boot. It may take \~1-2 min as multiple reboots are required during the first setup
 
 ## Installing Code Server
 
@@ -117,5 +119,72 @@ If everything goes well, the output would look like this:
 [2023-01-16T22:04:22.415Z] info    - Not serving HTTPS
 ```
 
-
 At this point we can't access code server yet because it's only listening on the IP address accessible by the raspberry pi, but we can change that easily now that the default config file has been generated at `~/.config/code-server/config.yaml`
+
+Let's shut it down (`ctrl+c`), edit the config file and get going! Since we are in the terminal, probably the easiest text editor that we can use is `nano`:
+
+```bash
+nano ~/.config/code-server/config.yaml
+```
+
+First thing we want to do is:
+
+* `bind-addr: 0.0.0.0:8080`: change the binding address so it can be accessible on our local network
+* change the password to something easier to remember
+
+Then hit `ctrl+x` to exit, `Y` to save the buffer and `return` key to save the changes in the current file
+
+Let's relaunch code server and verify that we can now access it
+
+```bash
+code-server
+```
+
+You should see an output similar to this:
+
+```bash
+[2023-01-16T22:51:33.000Z] info  code-server 4.9.1 f7989a4dfcf21085e52157a01924d79d708bcc05
+[2023-01-16T22:51:33.005Z] info  Using user-data-dir ~/.local/share/code-server
+[2023-01-16T22:51:33.112Z] info  Using config file ~/.config/code-server/config.yaml
+[2023-01-16T22:51:33.113Z] info  HTTP server listening on http://0.0.0.0:8080/ 
+[2023-01-16T22:51:33.113Z] info    - Authentication is enabled
+[2023-01-16T22:51:33.114Z] info      - Using password from ~/.config/code-server/config.yaml
+[2023-01-16T22:51:33.114Z] info    - Not serving HTTPS 
+```
+
+Now open your browser and go to `http://codepi.local:8080`
+
+You will be greated by a welcome message from code server and ask to type the password we just setup. Type it in and click the `SUBMIT` button
+
+Give it a few seconds and you should see the startup screen
+
+Everything looks good but obviously it will not start automatically... On raspberry pi we can do this by using a software called `systemd` (most linux distributions are using it)
+
+First thing we need to do is to tell systemd how to start it with our config file
+
+```bash
+sudo nano /etc/systemd/system/code-server.service
+```
+
+We will add the following content:
+
+```
+[Unit]
+Description=code-server
+After=network.target
+
+[Service]
+User=codepi
+Group=codepi
+
+WorkingDirectory=/home/codepi
+Environment="PATH=/usr/bin"
+ExecStart=/home/codepi/code-server
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+Then hit `ctrl+x` to exit, `Y` to save the buffer and `return` key to save the changes in the current file
+
