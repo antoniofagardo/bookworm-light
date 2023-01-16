@@ -2,7 +2,7 @@
 title: Setting Up Code Server On A Raspberry Pi
 description: meta description
 image: images/post/05.jpg
-date: 2021-01-25T16:56:47.000+06:00
+date: 2022-01-16T19:00:00+00:00
 author: Antoine Gosset
 tags:
 - RaspberryPi
