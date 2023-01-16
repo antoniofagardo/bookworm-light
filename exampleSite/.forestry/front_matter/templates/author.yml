@@ -24,3 +24,5 @@ fields:
   - type: text
     name: link
     label: link
+pages:
+- exampleSite/content/author/antoine-gosset.md
