@@ -53,9 +53,13 @@ PING codepi.local (192.168.0.106): 56 data bytes
 
 Let's connect to our freshly installed raspberry pi through ssh:
 
-* `ssh codepi@192.168.0.106`
-* if this is the first time connecting to it, host key will not be known and you will be asked if you want to connect to it.
-* type `yes` followed by the `RETURN` key
+```bash
+ssh codepi@192.168.0.106
+```
+
+If this is the first time connecting to it, host key will not be known and you will be asked if you want to connect to it.
+
+Type `yes` followed by the `RETURN` key
 
 Congratulation! You have now a functional raspberry pi ready to be configured :)
 
