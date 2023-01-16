@@ -14,8 +14,7 @@ categories:
 
 To avoid any compatibility issues, we are going to install the 64-BIT version of Raspbian so most of ARM64 binaries can be used
 
-1. Download and install Raspberry Pi Imager (v1.7.3 at the time of writing)
-
+1. Download and install [Raspberry Pi Imager](https://www.raspberrypi.com/software/) (v1.7.3 at the time of writing)
 2. Open Raspberry Pi Imager
 
 3. Select the operating system `RASPBERRY PI OS LITE (64-BIT)`
