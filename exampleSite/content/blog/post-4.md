@@ -15,24 +15,17 @@ categories:
 To avoid any compatibility issues, we are going to install the 64-BIT version of Raspbian so most of ARM64 binaries can be used
 
 1. Download and install [Raspberry Pi Imager](https://www.raspberrypi.com/software/) (v1.7.3 at the time of writing)
-
 2. Open Raspberry Pi Imager
-
 3. Select the operating system `RASPBERRY PI OS LITE (64-BIT)`
-
 4. Select the storage used (USB or SD card)
-
 5. Click the `config` icon to access the advanced options
-
 * Enable hostname and add a name (`codepi` in our case)
 * Enable SSH and use password authentication
 * Enable username and password (`codepi`, ****)
 * Enable wireless LAN and fill in information about SSID and password for your network
 * Enable local settings (`America/Los_angeles` in our case)
 * Click the save button
-
 6. Click the `WRITE` button and let the process finish
-
 7. Plug the SD card or USB stick into the pi ad let it boot. It may take \~1-2 min as multiple reboots are required during the first setup
 
 ## Installing Code Server
