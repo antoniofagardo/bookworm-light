@@ -10,7 +10,9 @@ categories:
 - RaspberryPi
 
 ---
+Code-server is an open-source tool that allows developers to run a cloud-based development environment on their own server or device. It is based on the popular code editor Visual Studio Code and runs on the Node.js runtime. With code-server, developers can access their development environment from anywhere, using any device with a web browser. This allows for increased productivity and flexibility, as developers can work from anywhere, at any time. 
 
+Code-server also includes a wide range of features, such as real-time collaboration, built-in terminal, and support for various programming languages and frameworks. It is easy to install and can run on a variety of platforms, including Windows, Linux, and macOS.
 
 ## Setting up Raspbian Lite 64 bit on a SD Card using Raspberry Pi Imager
 
@@ -56,7 +58,7 @@ PING codepi.local (192.168.0.106): 56 data bytes
   64 bytes from 192.168.0.106: icmp_seq=2 ttl=64 time=16.727 ms
 ```
 
-Don't forget to write down this IP address as this will be useful for the rest of this tutorial
+Don't forget to write down the IP address as it will be useful for the rest of this tutorial.
 
 
 ## Installing Code Server
