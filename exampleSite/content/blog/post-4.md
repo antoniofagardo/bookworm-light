@@ -179,7 +179,7 @@ Group=codepi
 
 WorkingDirectory=/home/codepi
 Environment="PATH=/usr/bin"
-ExecStart=/home/codepi/code-server
+ExecStart=/usr/bin/code-server
 
 [Install]
 WantedBy=multi-user.target
@@ -187,4 +187,66 @@ WantedBy=multi-user.target
 ```
 
 Then hit `ctrl+x` to exit, `Y` to save the buffer and `return` key to save the changes in the current file
+
+Let's enable our service to start on boot
+
+```bash
+sudo systemctl enable code-server
+```
+
+If everything goes well, you should see an output that looks like this
+
+```bash
+Created symlink /etc/systemd/system/multi-user.target.wants/code-server.service → /etc/systemd/system/code-server.service.
+```
+
+To start the server now, type the following
+
+```bash
+sudo systemctl start code-server
+```
+
+And to check that the service has started properly
+
+```bash
+sudo systemctl status code-server
+```
+
+## Getting rid of the "unsecure domains" warning
+
+We will tell code-server to start in secure mode, it will give us a certificate. That certificate will not be recognized by our browser by default but there's a workaround.
+
+First let's shut down our service
+
+```bash
+sudo systemctl stop code-server
+```
+
+Now we can change the config file
+
+```bash
+nano ~/.config/code-server/config.yaml
+```
+
+* update to `cert: true`
+* add `cert-host: codepi.local`
+
+Then hit `ctrl+x` to exit, `Y` to save the buffer and `return` key to save the changes in the current file
+
+And let's restart the server now
+
+```bash
+sudo systemctl start code-server
+```
+
+Now go back to the browser, this time using [https://codepi.local:8080](https://codepi.local:8080)
+
+You will see a warning telling you that your connection is not private. we will need to import the cert into chrome
+
+1. Click the "not secure" button in the address bar
+2. Click "certificate is not valid"
+3. In the popup, go to the "details" tab and click "export" to save it on disk
+4. double click on the downloaded cert and add it
+5. navigate to chrome://settings/, Privacy and security, Security
+5. double click on the new cert, under trust select trust all
 
