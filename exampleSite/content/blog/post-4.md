@@ -249,4 +249,8 @@ You will see a warning telling you that your connection is not private. we will 
 4. double click on the downloaded cert and add it
 5. navigate to chrome://settings/, Privacy and security, Security
 5. double click on the new cert, under trust select trust all
+7. open the following address in chrome [chrome://flags/#unsafely-treat-insecure-origin-as-secure](chrome://flags/#unsafely-treat-insecure-origin-as-secure)
+8. add `codepi.local:8080` in the field and restart chrome
+
+You should now have a secure version of cod-server accessible via https!
 
