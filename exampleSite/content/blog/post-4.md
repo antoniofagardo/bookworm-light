@@ -10,35 +10,44 @@ categories:
 - RaspberryPi
 
 ---
-## Setting up the Raspbian image
 
-To avoid any compatibility issues, we are going to install the 64-BIT version of Raspbian so most of ARM64 binaries can be used
 
-1. Download and install [Raspberry Pi Imager](https://www.raspberrypi.com/software/) (v1.7.3 at the time of writing)
-2. Open Raspberry Pi Imager
-3. Select the operating system `RASPBERRY PI OS LITE (64-BIT)`
-4. Select the storage used (USB or SD card)
-5. Click the `config` icon to access the advanced options
+## Setting up Raspbian Lite 64 bit on a SD Card using Raspberry Pi Imager
 
-* Enable hostname and add a name (`codepi` in our case)
+Raspberry Pi Imager is a simple and easy to use application that allows you to install various operating systems on your SD card, including Raspbian Lite 64 bit. In this tutorial, we will go through the step-by-step process of setting up Raspbian Lite 64 bit on a SD card using Raspberry Pi Imager.
+
+### Step 1: Download Raspberry Pi Imager
+The first step is to download Raspberry Pi Imager. You can download the latest version of Raspberry Pi Imager from the official Raspberry Pi website [here](https://www.raspberrypi.com/software/). Once the download is complete, install the application on your computer.
+
+### Step 2: Insert SD Card
+Insert your SD card into the SD card slot on your computer or into an SD card reader. Make sure that the SD card is empty and has enough space to accommodate the Raspbian Lite 64 bit image.
+
+### Step 3: Open Raspberry Pi Imager
+Open Raspberry Pi Imager and select the "CHOOSE OS" option. A list of operating systems will appear, select "Raspbian Lite". Next, select the SD card that you wish to install Raspbian Lite on.
+
+To add custom settings, select the options icon. A new window with custom settings will appear:
+
+* Enable hostname and add a name (`codepi` in our example)
 * Enable SSH and use password authentication
 * Enable username and password (`codepi`, ****)
 * Enable wireless LAN and fill in information about SSID and password for your network
-* Enable local settings (`America/Los_angeles` in our case)
-* Click the save button
+* Enable local settings (`America/Los_angeles` in our example)
+* Select save to close the custom options window
 
-1. Click the `WRITE` button and let the process finish
-2. Plug the SD card or USB stick into the pi ad let it boot. It may take \~1-2 min as multiple reboots are required during the first setup
+### Step 4: Write Image to SD Card
+Click on the "WRITE" button to start the image writing process. This process may take a few minutes to complete, depending on the size of the image and the speed of your SD card. Once the image has been written, you will be notified that the process is complete.
 
-## Installing Code Server
+### Step 5: First Raspberry Pi boot
+Once the image has been written to the SD card, it's time to insert the SD card into your Raspberry Pi and power it on. If you don't have a monitor hooked up, it may take ~1-2 minutes before the first setup finished and the raspberry pi becomes available over the network
 
-TIP: if you dont know the IP address of your raspberrry pi, open a terminal and try to ping it by using its hostname
+### Step 6: Find The IP Address Of Your Raspberry Pi
+Open the terminal on your Raspberry Pi and type the following command:
 
 ```bash
 ping codepi.local
 ```
 
-If the raspberry pi is online, you will see in the terminal its IP address
+Once completed, if the raspberry pi is online you should have a similar output to:
 
 ```bash
 PING codepi.local (192.168.0.106): 56 data bytes
@@ -46,6 +55,11 @@ PING codepi.local (192.168.0.106): 56 data bytes
   64 bytes from 192.168.0.106: icmp_seq=1 ttl=64 time=9.508 ms
   64 bytes from 192.168.0.106: icmp_seq=2 ttl=64 time=16.727 ms
 ```
+
+Don't forget to write down this IP address as this will be useful for the rest of this tutorial
+
+
+## Installing Code Server
 
 Let's connect to our freshly installed raspberry pi through ssh:
 
@@ -95,6 +109,7 @@ Deploy code-server for your team with Coder: https://github.com/coder/coder
 ```
 
 Code server is now installed and we can get going!
+
 
 ## Code Server Setup
 
@@ -211,6 +226,7 @@ And to check that the service has started properly
 ```bash
 sudo systemctl status code-server
 ```
+
 
 ## Getting rid of the "unsecure domains" warning
 
